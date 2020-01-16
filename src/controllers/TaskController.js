@@ -55,9 +55,7 @@ module.exports = {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      title: Yup.string()
-        .required()
-        .min(5),
+      title: Yup.string().required(),
       description: Yup.string()
         .required()
         .min(10)
@@ -67,7 +65,7 @@ module.exports = {
       return res.status(400).json({ error: "Validation fails" });
     }
 
-    const task = await await Task.create({ user: req.userId, ...req.body });
+    const task = await Task.create({ user: req.userId, ...req.body });
 
     return res.json(task);
   },
